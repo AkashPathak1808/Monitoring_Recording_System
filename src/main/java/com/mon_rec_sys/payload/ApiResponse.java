@@ -1,4 +1,4 @@
-package com.mon_rec_sys.dto;
+package com.mon_rec_sys.payload;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

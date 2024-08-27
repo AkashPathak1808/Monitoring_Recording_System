@@ -1,10 +1,11 @@
 package com.mon_rec_sys.exception;
 
-import com.mon_rec_sys.dto.ApiResponse;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+
+import com.mon_rec_sys.payload.ApiResponse;
 
 @ControllerAdvice
 public class GlobalExceptionHandler {
