@@ -35,7 +35,7 @@ public class UserController {
 	public ResponseEntity<?> getUser(@PathVariable Long id) {
 		String name = SecurityContextHolder.getContext().getAuthentication().getName();
 		UserDTO userDTO = this.service.getUser(id);
-		if (userDTO != null && name == userDTO.getEmail()) {
+		if (userDTO != null && name.equals(userDTO.getEmail())) {
 			return new ResponseEntity<>(userDTO, HttpStatus.FOUND);
 		}
 		return new ResponseEntity<>("User Not Logged In!!", HttpStatus.NOT_FOUND);
@@ -46,7 +46,7 @@ public class UserController {
 	public ResponseEntity<?> getUserByEmail(@PathVariable String email) {
 		String name = SecurityContextHolder.getContext().getAuthentication().getName();
 		UserDTO userByEmail = this.service.getUserByEmail(email);
-		if (userByEmail != null && name == userByEmail.getEmail()) {
+		if (userByEmail != null && name.equals(userByEmail.getEmail())) {
 			return new ResponseEntity<>(userByEmail, HttpStatus.FOUND);
 		}
 		return new ResponseEntity<>("User Not Logged In!!", HttpStatus.NOT_FOUND);
