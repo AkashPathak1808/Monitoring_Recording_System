@@ -1,5 +1,6 @@
 package com.mon_rec_sys.exception;
 
+@SuppressWarnings("serial")
 public class ResourceNotFoundException extends RuntimeException{
 
     public ResourceNotFoundException(String resourceName, String fieldName, Long fieldValue){
