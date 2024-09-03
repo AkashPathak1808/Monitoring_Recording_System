@@ -38,9 +38,6 @@ public class RecordingServiceImpl implements RecordingService {
 		recording = true;
 		outputFilePath = "E:\\Railworld India\\Screentshot\\" + System.currentTimeMillis() + ".mp4";
 
-//		System.loadLibrary(Core.NATIVE_LIBRARY_NAME);
-//		System.out.println("Starting video recording...");
-
 		int fourcc = VideoWriter.fourcc('m', 'p', '4', 'v');
 		Size frameSize = new Size(1280, 720); // Frame size for 720p
 		double fps = 30.0;
