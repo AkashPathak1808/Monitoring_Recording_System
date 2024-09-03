@@ -1,6 +1,8 @@
 package com.mon_rec_sys.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,16 +18,16 @@ public class RecordingController {
 	private RecordingService screenRecordingService;
 
 	@GetMapping("/start")
-	public String startRecording() {
+	public ResponseEntity<?> startRecording() {
 		String name = SecurityContextHolder.getContext().getAuthentication().getName();
 		screenRecordingService.startRecording(name);
-		return "Screen recording started for user: " + name;
+		return new ResponseEntity<>("Screen recording started for user: " + name, HttpStatus.OK);
 	}
 
 	@GetMapping("/stop")
-	public String stopRecording() {
+	public ResponseEntity<?> stopRecording() {
 		screenRecordingService.stopRecording();
 		String filePath = screenRecordingService.getOutputFilePath();
-		return "Screen recording stopped. Video saved to " + filePath;
+		return new ResponseEntity<>("Screen recording stopped. Video saved to " + filePath, HttpStatus.OK);
 	}
 }
