@@ -26,8 +26,8 @@ public class RecordingController {
 
 	@GetMapping("/stop")
 	public ResponseEntity<?> stopRecording() {
-		screenRecordingService.stopRecording();
-		String filePath = screenRecordingService.getOutputFilePath();
-		return new ResponseEntity<>("Screen recording stopped. Video saved to " + filePath, HttpStatus.OK);
+		String name = SecurityContextHolder.getContext().getAuthentication().getName();
+		screenRecordingService.stopRecording(name);
+		return new ResponseEntity<>("Screen recording stoped for user: "+name, HttpStatus.OK);
 	}
 }
