@@ -37,10 +37,12 @@ public class SecurityConfig {
 
 	@Bean
 	SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-		http.authorizeHttpRequests(
-				request -> request.requestMatchers("/user/create", "/generate-token", "/swagger-ui/**", "/v3/api-docs",
-						"/swagger-resources/**", "/webjars/**").permitAll()
-				.anyRequest().authenticated())
+		http.csrf(csrf -> csrf.disable()).cors(cors -> cors.disable())
+				.authorizeHttpRequests(
+						request -> request
+								.requestMatchers("/user/create", "/generate-token", "/swagger-ui/**", "/v3/api-docs",
+										"/swagger-resources/**", "/webjars/**")
+								.permitAll().anyRequest().authenticated())
 				.exceptionHandling(exception -> exception.authenticationEntryPoint(entryPoint))
 				.sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
 				.addFilterBefore(authFilter, UsernamePasswordAuthenticationFilter.class);
